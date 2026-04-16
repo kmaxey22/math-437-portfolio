@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "My Portfolio"
+  navbar:
+    left:
+      - text: Home
+        file: index.qmd
+      - text: Final Project
+        file: final-project.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
