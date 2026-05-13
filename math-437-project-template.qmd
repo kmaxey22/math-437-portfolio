@@ -24,6 +24,8 @@ The main objective was to identify which chemical properties are most associated
 
 ## Packages Used In This Analysis
 
+This section lists the packages used in the analysis. You should have a single chunk that loads the packages followed by a description of why you are using each package. Please use individual package names rather than tidyverse and tidymodels, to make it clear which specific packages are being used.
+
 ```{r}
 #| label: load packages
 #| message: false
@@ -35,8 +37,10 @@ library(caret)     # train/test split
 library(class)     # KNN methods
 ```
 
+You should follow the template table below. Each row of the table contains the package name in brackets, a link to the package website, and (on the right side) a description of what you used the package for. If you can't find a link to the package website, or you're having trouble getting the link to work, don't worry about including it.
+
 | Package | Use |
-|------------------------------------|------------------------------------|
+|----|----|
 | class | knn methods |
 | [readr](https://readr.tidyverse.org/) | to import the CSV file data |
 | [dplyr](https://dplyr.tidyverse.org/) | to massage and summarize data |
@@ -84,6 +88,8 @@ ggplot(train, aes(x = alcohol)) +
   labs(title = "Distribution of Alcohol Content")
 ```
 
+#### Relationship
+
 ```{r}
 #| label: revised wine quality vs alcohol content
 ggplot(train, aes(x = alcohol, y = quality)) +
@@ -103,7 +109,7 @@ ggplot(train, aes(x = volatile.acidity, y = quality)) +
   labs(title = "Volatile Acidity vs Quality")
 ```
 
-#### Revised Description:
+#### Description:
 
 The exploratory analysis examined how chemical measurements relate to wine quality ratings. Most wines received quality scores between 5 and 6, indicating that the dataset mainly contains average-quality wines. Alcohol content (% ABV) appeared slightly right-skewed, with most wines having moderate alcohol levels.
 

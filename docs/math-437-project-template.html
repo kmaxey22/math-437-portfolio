@@ -156,7 +156,7 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./final-project.html" aria-current="page"> 
+    <a class="nav-link" href="./final-project.html"> 
 <span class="menu-text">Final Project</span></a>
   </li>  
 </ul>
@@ -223,12 +223,14 @@ window.Quarto = {
 </section>
 <section id="packages-used-in-this-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used-in-this-analysis">Packages Used In This Analysis</h2>
+<p>This section lists the packages used in the analysis. You should have a single chunk that loads the packages followed by a description of why you are using each package. Please use individual package names rather than tidyverse and tidymodels, to make it clear which specific packages are being used.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)   <span class="co"># data visualization</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)     <span class="co"># data wrangling</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)     <span class="co"># train/test split</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)     <span class="co"># KNN methods</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>You should follow the template table below. Each row of the table contains the package name in brackets, a link to the package website, and (on the right side) a description of what you used the package for. If you can’t find a link to the package website, or you’re having trouble getting the link to work, don’t worry about including it.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -289,7 +291,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/quality distribution-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/quality distribution-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -304,11 +306,14 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/alcohol distribution-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/alcohol distribution-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+<section id="relationship" class="level4">
+<h4 class="anchored" data-anchor-id="relationship">Relationship</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(train, <span class="fu">aes</span>(<span class="at">x =</span> alcohol, <span class="at">y =</span> quality)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -323,7 +328,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/revised wine quality vs alcohol content-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/revised wine quality vs alcohol content-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -339,14 +344,14 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/volatile acidity vs quality-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/volatile acidity vs quality-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="revised-description" class="level4">
-<h4 class="anchored" data-anchor-id="revised-description">Revised Description:</h4>
+<section id="description" class="level4">
+<h4 class="anchored" data-anchor-id="description">Description:</h4>
 <p>The exploratory analysis examined how chemical measurements relate to wine quality ratings. Most wines received quality scores between 5 and 6, indicating that the dataset mainly contains average-quality wines. Alcohol content (% ABV) appeared slightly right-skewed, with most wines having moderate alcohol levels.</p>
 <p>Alcohol content showed a positive relationship with wine quality, suggesting that wines with higher alcohol percentages tended to receive higher ratings. In contrast, volatile acidity, which measures acetic acid levels in the wine, showed a negative relationship with quality. These findings suggest that alcohol content and volatile acidity are important predictors of wine quality.</p>
 </section>
@@ -378,7 +383,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/revised knn model-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/revised knn model-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -406,13 +411,13 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="final-project_files/figure-html/cluster-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="math-437-project-template_files/figure-html/cluster-plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="revised-description-1" class="level4">
-<h4 class="anchored" data-anchor-id="revised-description-1">Revised Description:</h4>
+<section id="revised-description" class="level4">
+<h4 class="anchored" data-anchor-id="revised-description">Revised Description:</h4>
 <p>Several improvements were made based on feedback from the original Project 2 submission. The revised analysis provides stronger justification for the modeling choices, including using the elbow method to determine the number of clusters in the k-means analysis.</p>
 <p>The interpretation of the clustering results was also improved by acknowledging the overlap among clusters rather than claiming clearly separated groups. In addition, wine quality was treated consistently as a quantitative response variable by using KNN regression instead of KNN classification. The exploratory data analysis section was also strengthened by explaining chemical variables in more accessible language and including measurement units for readers unfamiliar with wine chemistry.</p>
 </section>

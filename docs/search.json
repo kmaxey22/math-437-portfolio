@@ -9,9 +9,9 @@
   {
     "objectID": "final-project.html",
     "href": "final-project.html",
-    "title": "final-project.qmd",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
     "section": "",
-    "text": "Final Project\nThis page will contain my Math 437 final project."
+    "text": "The goal of this project was to examine how the chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory analysis showed that alcohol content had a positive relationship with wine quality, while volatile acidity had a negative relationship.\nLinear regression and KNN regression were used to predict wine quality. Both models showed moderate predictive performance, suggesting that wine quality depends on complex relationships among chemical properties that may not be fully captured by simple models."
   },
   {
     "objectID": "about.html",
@@ -19,5 +19,124 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "math-437-project-template.html",
+    "href": "math-437-project-template.html",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "",
+    "text": "The goal of this project was to examine how the chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory analysis showed that alcohol content had a positive relationship with wine quality, while volatile acidity had a negative relationship.\nLinear regression and KNN regression were used to predict wine quality. Both models showed moderate predictive performance, suggesting that wine quality depends on complex relationships among chemical properties that may not be fully captured by simple models."
+  },
+  {
+    "objectID": "math-437-project-template.html#summary",
+    "href": "math-437-project-template.html#summary",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "",
+    "text": "The goal of this project was to examine how the chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory analysis showed that alcohol content had a positive relationship with wine quality, while volatile acidity had a negative relationship.\nLinear regression and KNN regression were used to predict wine quality. Both models showed moderate predictive performance, suggesting that wine quality depends on complex relationships among chemical properties that may not be fully captured by simple models."
+  },
+  {
+    "objectID": "math-437-project-template.html#motivation-and-context",
+    "href": "math-437-project-template.html#motivation-and-context",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Motivation and Context",
+    "text": "Motivation and Context\nWine quality is influenced by chemical characteristics such as alcohol content, acidity, sugar levels, and sulfur compounds. Understanding how these properties relate to wine quality can help producers improve consistency and production methods. In this project, the Wine Quality dataset was analyzed to examine how chemical measurements of Portuguese red wines relate to quality ratings.\nThe main objective was to identify which chemical properties are most associated with wine quality and determine whether wine quality can be predicted using statistical and machine learning methods. Exploratory data analysis, clustering, linear regression, and KNN regression were used to analyze relationships within the data and evaluate predictive performance."
+  },
+  {
+    "objectID": "math-437-project-template.html#packages-used-in-this-analysis",
+    "href": "math-437-project-template.html#packages-used-in-this-analysis",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Packages Used In This Analysis",
+    "text": "Packages Used In This Analysis\nThis section lists the packages used in the analysis. You should have a single chunk that loads the packages followed by a description of why you are using each package. Please use individual package names rather than tidyverse and tidymodels, to make it clear which specific packages are being used.\n\nlibrary(ggplot2)   # data visualization\nlibrary(dplyr)     # data wrangling\nlibrary(caret)     # train/test split\nlibrary(class)     # KNN methods\n\nYou should follow the template table below. Each row of the table contains the package name in brackets, a link to the package website, and (on the right side) a description of what you used the package for. If you can’t find a link to the package website, or you’re having trouble getting the link to work, don’t worry about including it.\n\n\n\nPackage\nUse\n\n\n\n\nclass\nknn methods\n\n\nreadr\nto import the CSV file data\n\n\ndplyr\nto massage and summarize data\n\n\ncaret\nto split data into training and test sets\n\n\nggplot2\nto create nice-looking and informative graphs"
+  },
+  {
+    "objectID": "math-437-project-template.html#data-description",
+    "href": "math-437-project-template.html#data-description",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Data Description",
+    "text": "Data Description\nThe dataset used in this analysis is the Wine Quality dataset, which contains chemical measurements for 1,599 Portuguese “Vinho Verde” red wine samples. The dataset includes variables such as acidity, sugar content, pH, alcohol level, and a wine quality rating.\nThe data was collected through laboratory analysis and made publicly available through the UCI Machine Learning Repository. For modeling, the data was split into training and testing sets using a 70/30 split, allowing the models to be trained and evaluated on separate data.\n\nwine &lt;- read.csv(\"winequality-red.csv\", sep = \";\")"
+  },
+  {
+    "objectID": "math-437-project-template.html#data-wrangling-optional-section",
+    "href": "math-437-project-template.html#data-wrangling-optional-section",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Data Wrangling (Optional Section)",
+    "text": "Data Wrangling (Optional Section)\n\nset.seed(153)\n\ntrainIndex &lt;- createDataPartition(wine$quality, p = 0.7, list = FALSE)\ntrain &lt;- wine[trainIndex, ]\ntest &lt;- wine[-trainIndex, ]"
+  },
+  {
+    "objectID": "math-437-project-template.html#exploratory-data-analysis",
+    "href": "math-437-project-template.html#exploratory-data-analysis",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Exploratory Data Analysis",
+    "text": "Exploratory Data Analysis\n\nUnivariate:\n\nggplot(train, aes(x = quality)) +\n  geom_histogram(binwidth = 1, fill = \"skyblue\", color = \"black\") +\n  labs(title = \"Distribution of Wine Quality\")\n\n\n\n\n\n\n\n\n\nggplot(train, aes(x = alcohol)) +\n  geom_histogram(fill = \"orange\", color = \"black\") +\n  labs(title = \"Distribution of Alcohol Content\")\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nRelationship\n\nggplot(train, aes(x = alcohol, y = quality)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"blue\") +\n  labs(title = \"Wine Quality vs Alcohol Content\",\n       x = \"Alcohol Content (%)\",\n       y = \"Wine Quality Rating\") +\n  theme_minimal()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nggplot(train, aes(x = volatile.acidity, y = quality)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\") +\n  labs(title = \"Volatile Acidity vs Quality\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\nDescription:\nThe exploratory analysis examined how chemical measurements relate to wine quality ratings. Most wines received quality scores between 5 and 6, indicating that the dataset mainly contains average-quality wines. Alcohol content (% ABV) appeared slightly right-skewed, with most wines having moderate alcohol levels.\nAlcohol content showed a positive relationship with wine quality, suggesting that wines with higher alcohol percentages tended to receive higher ratings. In contrast, volatile acidity, which measures acetic acid levels in the wine, showed a negative relationship with quality. These findings suggest that alcohol content and volatile acidity are important predictors of wine quality."
+  },
+  {
+    "objectID": "math-437-project-template.html#modeling",
+    "href": "math-437-project-template.html#modeling",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Modeling",
+    "text": "Modeling\n\nset.seed(156)\n\n# remove response variable\nwine_scaled &lt;- scale(train[, -12])\n\n# elbow method\nwss &lt;- c()\n\nfor(i in 1:10){\n  km &lt;- kmeans(wine_scaled,\n               centers = i,\n               nstart = 25)\n  \n  wss[i] &lt;- km$tot.withinss\n}\n\nplot(1:10, wss,\n     type = \"b\",\n     xlab = \"Number of Clusters\",\n     ylab = \"Within-Cluster Sum of Squares\",\n     main = \"Elbow Method for K-Means Clustering\")\n\n\n\n\n\n\n\n\n\nset.seed(156)\n\n# choose number of clusters based on elbow plot\nkmeans_model &lt;- kmeans(wine_scaled,\n                       centers = 3,\n                       nstart = 25)\n\ntrain$cluster &lt;- as.factor(kmeans_model$cluster)\n\n\nggplot(train,\n       aes(x = alcohol,\n           y = sulphates,\n           color = cluster)) +\n  geom_point(alpha = 0.7) +\n  labs(title = \"K-Means Clusters\",\n       x = \"Alcohol Content (%)\",\n       y = \"Sulphates Concentration\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nRevised Description:\nSeveral improvements were made based on feedback from the original Project 2 submission. The revised analysis provides stronger justification for the modeling choices, including using the elbow method to determine the number of clusters in the k-means analysis.\nThe interpretation of the clustering results was also improved by acknowledging the overlap among clusters rather than claiming clearly separated groups. In addition, wine quality was treated consistently as a quantitative response variable by using KNN regression instead of KNN classification. The exploratory data analysis section was also strengthened by explaining chemical variables in more accessible language and including measurement units for readers unfamiliar with wine chemistry."
+  },
+  {
+    "objectID": "math-437-project-template.html#insightsconclusion",
+    "href": "math-437-project-template.html#insightsconclusion",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Insights/Conclusion",
+    "text": "Insights/Conclusion\n\nConclusion:\nThe goal of this project was to investigate how chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory data analysis showed that alcohol content (% alcohol by volume) had a positive relationship with wine quality, while volatile acidity, which measures acetic acid levels in the wine, had a negative relationship with quality. These findings suggest that wines with higher alcohol content and lower acidity generally tended to receive higher quality ratings.\nK-means clustering was used to explore patterns among the wines based on their chemical measurements. Although some structure was identified, the clusters showed substantial overlap, suggesting that the wines do not separate into clearly distinct groups. Linear regression and KNN regression were then used to predict wine quality, and both models demonstrated moderate predictive performance. Overall, the analysis highlights how machine learning and statistical methods can be used to better understand factors that influence wine quality.\n\n\nLimitations and Future Work\nOne limitation of this analysis is that both the linear regression and KNN regression models showed only moderate predictive performance, suggesting that wine quality is difficult to predict using the available variables alone. Wine quality ratings are somewhat subjective because they are based on human evaluations, and factors such as personal taste preferences may influence the scores. In addition, the models may struggle to accurately predict wines with unusually high or low quality ratings because those observations are less common in the dataset.\nAnother limitation is that linear regression assumes a linear relationship between predictors and the response variable, which may not fully capture the complex relationships among chemical properties and wine quality. While KNN regression can model nonlinear relationships, its performance is sensitive to the choice of \\(k\\) and the scaling of variables.\nFuture work could improve the analysis by collecting additional variables related to wine production, taste, or regional characteristics. More advanced machine learning methods, such as random forests or boosted trees, could also be explored to better capture nonlinear patterns and interactions among variables."
+  },
+  {
+    "objectID": "final-project.html#summary",
+    "href": "final-project.html#summary",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "",
+    "text": "The goal of this project was to examine how the chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory analysis showed that alcohol content had a positive relationship with wine quality, while volatile acidity had a negative relationship.\nLinear regression and KNN regression were used to predict wine quality. Both models showed moderate predictive performance, suggesting that wine quality depends on complex relationships among chemical properties that may not be fully captured by simple models."
+  },
+  {
+    "objectID": "final-project.html#motivation-and-context",
+    "href": "final-project.html#motivation-and-context",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Motivation and Context",
+    "text": "Motivation and Context\nWine quality is influenced by chemical characteristics such as alcohol content, acidity, sugar levels, and sulfur compounds. Understanding how these properties relate to wine quality can help producers improve consistency and production methods. In this project, the Wine Quality dataset was analyzed to examine how chemical measurements of Portuguese red wines relate to quality ratings.\nThe main objective was to identify which chemical properties are most associated with wine quality and determine whether wine quality can be predicted using statistical and machine learning methods. Exploratory data analysis, clustering, linear regression, and KNN regression were used to analyze relationships within the data and evaluate predictive performance."
+  },
+  {
+    "objectID": "final-project.html#packages-used-in-this-analysis",
+    "href": "final-project.html#packages-used-in-this-analysis",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Packages Used In This Analysis",
+    "text": "Packages Used In This Analysis\n\nlibrary(ggplot2)   # data visualization\nlibrary(dplyr)     # data wrangling\nlibrary(caret)     # train/test split\nlibrary(class)     # KNN methods\n\n\n\n\nPackage\nUse\n\n\n\n\nclass\nknn methods\n\n\nreadr\nto import the CSV file data\n\n\ndplyr\nto massage and summarize data\n\n\ncaret\nto split data into training and test sets\n\n\nggplot2\nto create nice-looking and informative graphs"
+  },
+  {
+    "objectID": "final-project.html#data-description",
+    "href": "final-project.html#data-description",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Data Description",
+    "text": "Data Description\nThe dataset used in this analysis is the Wine Quality dataset, which contains chemical measurements for 1,599 Portuguese “Vinho Verde” red wine samples. The dataset includes variables such as acidity, sugar content, pH, alcohol level, and a wine quality rating.\nThe data was collected through laboratory analysis and made publicly available through the UCI Machine Learning Repository. For modeling, the data was split into training and testing sets using a 70/30 split, allowing the models to be trained and evaluated on separate data.\n\nwine &lt;- read.csv(\"winequality-red.csv\", sep = \";\")"
+  },
+  {
+    "objectID": "final-project.html#data-wrangling-optional-section",
+    "href": "final-project.html#data-wrangling-optional-section",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Data Wrangling (Optional Section)",
+    "text": "Data Wrangling (Optional Section)\n\nset.seed(153)\n\ntrainIndex &lt;- createDataPartition(wine$quality, p = 0.7, list = FALSE)\ntrain &lt;- wine[trainIndex, ]\ntest &lt;- wine[-trainIndex, ]"
+  },
+  {
+    "objectID": "final-project.html#exploratory-data-analysis",
+    "href": "final-project.html#exploratory-data-analysis",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Exploratory Data Analysis",
+    "text": "Exploratory Data Analysis\n\nUnivariate:\n\nggplot(train, aes(x = quality)) +\n  geom_histogram(binwidth = 1, fill = \"skyblue\", color = \"black\") +\n  labs(title = \"Distribution of Wine Quality\")\n\n\n\n\n\n\n\n\n\nggplot(train, aes(x = alcohol)) +\n  geom_histogram(fill = \"orange\", color = \"black\") +\n  labs(title = \"Distribution of Alcohol Content\")\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`.\n\n\n\n\n\n\n\n\n\n\nggplot(train, aes(x = alcohol, y = quality)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\", se = FALSE, color = \"blue\") +\n  labs(title = \"Wine Quality vs Alcohol Content\",\n       x = \"Alcohol Content (%)\",\n       y = \"Wine Quality Rating\") +\n  theme_minimal()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nggplot(train, aes(x = volatile.acidity, y = quality)) +\n  geom_point(alpha = 0.5) +\n  geom_smooth(method = \"lm\") +\n  labs(title = \"Volatile Acidity vs Quality\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\nRevised Description:\nThe exploratory analysis examined how chemical measurements relate to wine quality ratings. Most wines received quality scores between 5 and 6, indicating that the dataset mainly contains average-quality wines. Alcohol content (% ABV) appeared slightly right-skewed, with most wines having moderate alcohol levels.\nAlcohol content showed a positive relationship with wine quality, suggesting that wines with higher alcohol percentages tended to receive higher ratings. In contrast, volatile acidity, which measures acetic acid levels in the wine, showed a negative relationship with quality. These findings suggest that alcohol content and volatile acidity are important predictors of wine quality."
+  },
+  {
+    "objectID": "final-project.html#modeling",
+    "href": "final-project.html#modeling",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Modeling",
+    "text": "Modeling\n\nset.seed(156)\n\n# remove response variable\nwine_scaled &lt;- scale(train[, -12])\n\n# elbow method\nwss &lt;- c()\n\nfor(i in 1:10){\n  km &lt;- kmeans(wine_scaled,\n               centers = i,\n               nstart = 25)\n  \n  wss[i] &lt;- km$tot.withinss\n}\n\nplot(1:10, wss,\n     type = \"b\",\n     xlab = \"Number of Clusters\",\n     ylab = \"Within-Cluster Sum of Squares\",\n     main = \"Elbow Method for K-Means Clustering\")\n\n\n\n\n\n\n\n\n\nset.seed(156)\n\n# choose number of clusters based on elbow plot\nkmeans_model &lt;- kmeans(wine_scaled,\n                       centers = 3,\n                       nstart = 25)\n\ntrain$cluster &lt;- as.factor(kmeans_model$cluster)\n\n\nggplot(train,\n       aes(x = alcohol,\n           y = sulphates,\n           color = cluster)) +\n  geom_point(alpha = 0.7) +\n  labs(title = \"K-Means Clusters\",\n       x = \"Alcohol Content (%)\",\n       y = \"Sulphates Concentration\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nRevised Description:\nSeveral improvements were made based on feedback from the original Project 2 submission. The revised analysis provides stronger justification for the modeling choices, including using the elbow method to determine the number of clusters in the k-means analysis.\nThe interpretation of the clustering results was also improved by acknowledging the overlap among clusters rather than claiming clearly separated groups. In addition, wine quality was treated consistently as a quantitative response variable by using KNN regression instead of KNN classification. The exploratory data analysis section was also strengthened by explaining chemical variables in more accessible language and including measurement units for readers unfamiliar with wine chemistry."
+  },
+  {
+    "objectID": "final-project.html#insightsconclusion",
+    "href": "final-project.html#insightsconclusion",
+    "title": "Pour Decisions: Predicting Wine Quality with Data",
+    "section": "Insights/Conclusion",
+    "text": "Insights/Conclusion\n\nConclusion:\nThe goal of this project was to investigate how chemical properties of red wine relate to wine quality and whether wine quality can be predicted using statistical and machine learning methods. Exploratory data analysis showed that alcohol content (% alcohol by volume) had a positive relationship with wine quality, while volatile acidity, which measures acetic acid levels in the wine, had a negative relationship with quality. These findings suggest that wines with higher alcohol content and lower acidity generally tended to receive higher quality ratings.\nK-means clustering was used to explore patterns among the wines based on their chemical measurements. Although some structure was identified, the clusters showed substantial overlap, suggesting that the wines do not separate into clearly distinct groups. Linear regression and KNN regression were then used to predict wine quality, and both models demonstrated moderate predictive performance. Overall, the analysis highlights how machine learning and statistical methods can be used to better understand factors that influence wine quality.\n\n\nLimitations and Future Work\nOne limitation of this analysis is that both the linear regression and KNN regression models showed only moderate predictive performance, suggesting that wine quality is difficult to predict using the available variables alone. Wine quality ratings are somewhat subjective because they are based on human evaluations, and factors such as personal taste preferences may influence the scores. In addition, the models may struggle to accurately predict wines with unusually high or low quality ratings because those observations are less common in the dataset.\nAnother limitation is that linear regression assumes a linear relationship between predictors and the response variable, which may not fully capture the complex relationships among chemical properties and wine quality. While KNN regression can model nonlinear relationships, its performance is sensitive to the choice of \\(k\\) and the scaling of variables.\nFuture work could improve the analysis by collecting additional variables related to wine production, taste, or regional characteristics. More advanced machine learning methods, such as random forests or boosted trees, could also be explored to better capture nonlinear patterns and interactions among variables."
   }
 ]
